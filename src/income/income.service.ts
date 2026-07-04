@@ -8,8 +8,15 @@ export class IncomeService {
   constructor(private readonly prisma: PrismaService) {}
 
   create(dto: CreateIncomeDto) {
-    return this.prisma.income.create({
-      data: { ...dto, date: new Date(dto.date) },
+    return this.prisma.$transaction(async (tx) => {
+      const income = await tx.income.create({
+        data: { ...dto, date: new Date(dto.date) },
+      });
+      await tx.account.update({
+        where: { id: dto.account_id },
+        data: { total_amount: { increment: dto.amount } },
+      });
+      return income;
     });
   }
 

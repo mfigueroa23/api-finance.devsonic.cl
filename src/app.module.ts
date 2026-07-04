@@ -6,6 +6,7 @@ import { AccountTypesModule } from './account-types/account-types.module.js';
 import { AccountsModule } from './accounts/accounts.module.js';
 import { IncomeTypesModule } from './income-types/income-types.module.js';
 import { IncomeModule } from './income/income.module.js';
+import { ChargeTypesModule } from './charge-types/charge-types.module.js';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { IncomeModule } from './income/income.module.js';
     AccountsModule,
     IncomeTypesModule,
     IncomeModule,
+    ChargeTypesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

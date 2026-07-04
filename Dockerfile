@@ -10,7 +10,7 @@ RUN npm install --global corepack@latest && \
     corepack enable && \
     corepack prepare pnpm@11 --activate
 
-WORKDIR /api.devsonic.cl
+WORKDIR /api-finance.devsonic.cl
 
 # Dependency manifests first — pnpm install layer is cached until these change
 COPY ./package.json ./pnpm-lock.yaml ./pnpm-workspace.yaml ./
@@ -28,7 +28,7 @@ COPY ./entrypoint.sh ./
 
 # Security: set permissions and drop to non-root user
 RUN chmod +x ./entrypoint.sh && \
-    chown -R node:node /api.devsonic.cl
+    chown -R node:node /api-finance.devsonic.cl
 
 USER node
 

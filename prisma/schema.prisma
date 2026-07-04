@@ -17,3 +17,57 @@ model property {
   key   String @unique
   value String
 }
+
+model account_type {
+  id      Int       @id @default(autoincrement())
+  name    String
+  account account[]
+}
+
+model account {
+  id              Int      @id @default(autoincrement())
+  name            String
+  bank_name       String
+  account_number  String
+  total_amount    Decimal
+  account_type_id Int
+  account_type    account_type @relation(fields: [account_type_id], references: [id])
+  income          income[]
+  charges         charges[]
+}
+
+model income_type {
+  id     Int      @id @default(autoincrement())
+  name   String
+  income income[]
+}
+
+model income {
+  id             Int         @id @default(autoincrement())
+  name           String
+  date           DateTime
+  amount         Decimal
+  detail         String?
+  income_type_id Int
+  account_id     Int
+  income_type    income_type @relation(fields: [income_type_id], references: [id])
+  account        account     @relation(fields: [account_id], references: [id])
+}
+
+model charge_type {
+  id      Int       @id @default(autoincrement())
+  name    String
+  charges charges[]
+}
+
+model charges {
+  id             Int         @id @default(autoincrement())
+  name           String
+  amount         Decimal
+  date           DateTime
+  detail         String?
+  account_id     Int
+  charge_type_id Int
+  account        account     @relation(fields: [account_id], references: [id])
+  charge_type    charge_type @relation(fields: [charge_type_id], references: [id])
+}

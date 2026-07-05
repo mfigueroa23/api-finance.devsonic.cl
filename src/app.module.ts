@@ -8,6 +8,7 @@ import { IncomeTypesModule } from './income-types/income-types.module.js';
 import { IncomeModule } from './income/income.module.js';
 import { ChargeTypesModule } from './charge-types/charge-types.module.js';
 import { ChargesModule } from './charges/charges.module.js';
+import { TransfersModule } from './transfers/transfers.module.js';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ChargesModule } from './charges/charges.module.js';
     IncomeModule,
     ChargeTypesModule,
     ChargesModule,
+    TransfersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

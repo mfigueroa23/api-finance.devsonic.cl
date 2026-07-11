@@ -57,6 +57,20 @@ $ pnpm run test:e2e
 $ pnpm run test:cov
 ```
 
+## Configuration
+
+### CORS domain whitelist (database-driven)
+
+Allowed CORS origins are not hardcoded or set via an env var — they are stored in the `cors_domains` table and loaded at application startup (`src/main.ts`).
+
+| Column        | Type    | Notes                          |
+| ------------- | ------- | ------------------------------- |
+| `id`          | Int     | Primary key, auto-increment     |
+| `domain`      | String  | Unique                          |
+| `habilitated` | Boolean | Default: `false`                |
+
+To allow a new origin, insert (or update) a row in `cors_domains` with `habilitated = true` and restart the app. If no rows have `habilitated = true`, all cross-origin requests are blocked.
+
 ## Deployment
 
 When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.

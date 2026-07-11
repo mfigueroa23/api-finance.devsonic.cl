@@ -18,6 +18,12 @@ model property {
   value String
 }
 
+model cors_domains {
+  id          Int     @id @default(autoincrement())
+  domain      String  @unique
+  habilitated Boolean @default(false)
+}
+
 model account_type {
   id      Int       @id @default(autoincrement())
   name    String
